@@ -7,6 +7,7 @@ import SelectPatientPopup from '../TypeService/Component/SelectPatientPopup';
 import AntdTextArea from '../../../components/Forms/AntdTextArea';
 import BoxDate from '../../../components/Date';
 import InputBox from '../../../components/Forms/Input_new';
+import useStoreServices from '../../../store/selectServices';
 
 const Treatment = () => {
   const [patients, setPatients] = useState([]);
@@ -14,6 +15,8 @@ const Treatment = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(false);
   const [inspectionId, setInspectionId] = useState(null);
+
+  const { services } = useStoreServices();
 
   const [detailed, setDetailed] = useState([]);
 
@@ -98,11 +101,14 @@ const Treatment = () => {
   const HandlenSubmit = async () => {
     // console.log('dddd');
 
+
+
     const sendData = {
       diseases_now: intivalue.diseases_now || '',
       symptom: intivalue.symptom || '',
       note: intivalue.note || '',
       checkup: intivalue.checkup || '',
+      detailed: services
     };
 
     console.log(sendData);
